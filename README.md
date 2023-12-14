@@ -67,3 +67,57 @@ To install and run this project locally, follow these steps:
 - **Functionality:** Cypress Axe is a Cypress plugin that integrates the Axe accessibility testing library into Cypress tests. It allows for automated accessibility testing of web applications.
 
 - **Installation:** Included in the project dependencies. Installed via `npm install`.
+
+## Accessibility Testing
+
+### Cypress Axe Automated Testing
+
+This project uses Cypress and Cypress Axe for automated accessibility testing. The accessibility tests can be executed using the following commands:
+
+- To test the entire page for accessibility issues:
+
+    ```bash
+    npx cypress run --spec cypress/integration/todo.spec.js
+    ```
+
+- To exclude specific elements on the page:
+
+    ```bash
+    npx cypress run --spec cypress/integration/todo.spec.js --env exclude=".learn"
+    ```
+
+- To test specific elements on the page:
+
+    ```bash
+    npx cypress run --spec cypress/integration/todo.spec.js --env include=".learn"
+    ```
+
+- To include rules with serious and critical impacts only:
+
+    ```bash
+    npx cypress run --spec cypress/integration/todo.spec.js --env includedImpacts="critical,serious"
+    ```
+
+- To exclude specific accessibility rules:
+
+    ```bash
+    npx cypress run --spec cypress/integration/todo.spec.js --env excludeRules="color-contrast"
+    ```
+
+### Lighthouse Performance Tool
+
+Additionally, this repository includes a screenshot of the Lighthouse performance tool built into Chrome. Lighthouse is an open-source, automated tool for improving the quality of web pages. It can be accessed through Chrome DevTools or run from the command line.
+
+#### How to use Lighthouse:
+
+1. Open Chrome DevTools by right-clicking on the page, selecting "Inspect", and navigating to the "Audits/Lighthouse" tab.
+
+2. Click on the "Generate report" button to run the Lighthouse audit.
+
+3. Review the Lighthouse report, which provides insights into performance, accessibility, SEO, and best practices.
+
+4. Use the recommendations provided by Lighthouse to improve the overall quality of the web page.
+
+### Manual Testing
+
+While automated testing is valuable for identifying many accessibility issues, manual testing is equally important. Manual testing allows testers to experience the application as real users do and catch issues that automated tests might miss. It involves navigating through the application using various assistive technologies and ensuring that all functionalities are accessible and user-friendly.
