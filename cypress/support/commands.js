@@ -23,10 +23,3 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-import 'cypress-axe';
-
-// Opcional: Configuración de Cypress
-Cypress.on('uncaught:exception', (err, runnable) => {
-    // Evita que las excepciones no detectadas interrumpan las pruebas
-    return false;
-});

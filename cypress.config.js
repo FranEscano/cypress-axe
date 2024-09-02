@@ -1,7 +1,10 @@
-import 'cypress-axe';
+const { defineConfig } = require("cypress");
 
-// Optional: Cypress configuration
-Cypress.on('uncaught:exception', (err, runnable) => {
-    // Prevent uncaught exceptions from interrupting tests
-    return false;
+module.exports = defineConfig({
+  e2e: {
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
+    },
+  },
 });
+

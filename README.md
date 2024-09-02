@@ -1,123 +1,85 @@
-# Cypress Accessibility Testing
+# Accessibility Testing with Cypress and axe
 
-This project includes Cypress Axe for automated accessibility testing in a sample Todo application built with React.
+## Overview
 
-## Table of Contents
-- [Importance of Accessibility](#importance-of-accessibility)
-- [Installation](#installation)
-- [Dependencies](#dependencies)
-- [Accessibility Testing](#accessibility-testing)
+This project demonstrates how to use Cypress with `cypress-axe` for accessibility testing of web applications. Accessibility is crucial to ensure that web applications are usable by all people, including those with disabilities. This project includes example tests that check for accessibility issues and log the results to the console.
 
 ## Importance of Accessibility
 
-Accessibility is crucial in software products for the following reasons:
+Accessibility (often abbreviated as a11y) refers to the practice of making web applications usable for everyone, including people with disabilities. This includes those who:
 
-- **Inclusivity:** Accessible software ensures that people with disabilities can use and interact with the application. It promotes inclusivity and a positive user experience for everyone.
+- Have visual impairments (e.g., blindness, color blindness)
+- Use screen readers
+- Have mobility impairments (e.g., limited hand function)
+- Have cognitive impairments (e.g., learning disabilities)
 
-- **Legal Compliance:** Many countries and regions have legal requirements regarding software accessibility. Adhering to accessibility standards helps in compliance with these regulations.
+Ensuring your web application is accessible not only helps you comply with legal requirements but also expands your audience and improves user experience for everyone.
 
-- **Business Benefits:** Accessible software can reach a larger audience, leading to increased user engagement and customer satisfaction. It can also enhance the reputation of the product and the company.
+## Accessibility Testing
 
-- **Ethical Responsibility:** Ensuring that software is accessible is an ethical responsibility for developers. It reflects a commitment to creating technology that benefits all users, regardless of their abilities.
+Accessibility testing involves evaluating web content and applications to ensure they meet accessibility standards and guidelines. Tools like axe can automatically check for common accessibility issues, such as missing alt text for images, poor color contrast, and incorrect ARIA roles. Integrating accessibility tests into your development process helps catch and fix issues early.
 
-## Installation
+## Project Setup
 
-To install and run this project locally, follow these steps:
+### Prerequisites
 
-1. Clone the repository:
+Make sure you have Node.js and npm installed. If not, you can download and install them from [Node.js official website](https://nodejs.org/).
 
+### Installation
+
+1. **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/todo-app.git
+    git clone <repository-url>
+    cd <repository-directory>
     ```
 
-2. Change into the project directory:
-
-    ```bash
-    cd todo-app
-    ```
-
-3. Install dependencies:
-
+2. **Install dependencies:**
     ```bash
     npm install
     ```
 
-## Dependencies
+### Configuration
 
-### Node.js
+1. **Create a Cypress configuration file (if not already present):**
+    - If you don’t have a `cypress.json` file, create one in the root of your project.
 
-- **Functionality:** Node.js is a JavaScript runtime that allows you to execute JavaScript code outside of a web browser. It is the runtime environment for this project.
+2. **Set up Cypress to use `cypress-axe`:**
+    - Open or create the file `cypress/support/commands.js` and add the following code:
+        ```javascript
+        import 'cypress-axe';
 
-- **Installation:** [Node.js](https://nodejs.org/)
+        // Optional: Cypress configuration
+        Cypress.on('uncaught:exception', (err, runnable) => {
+            // Prevent uncaught exceptions from interrupting tests
+            return false;
+        });
+        ```
 
-### npm
+### Running Tests
 
-- **Functionality:** npm is the package manager for JavaScript. It is used to manage project dependencies and execute various commands related to package management.
-
-- **Installation:** npm is included with Node.js. No separate installation is required.
-
-### Cypress
-
-- **Functionality:** Cypress is a JavaScript end-to-end testing framework. It is used for writing and running automated tests for web applications.
-
-- **Installation:** Included in the project dependencies. Installed via `npm install`.
-
-### Cypress Axe
-
-- **Functionality:** Cypress Axe is a Cypress plugin that integrates the Axe accessibility testing library into Cypress tests. It allows for automated accessibility testing of web applications.
-
-- **Installation:** Included in the project dependencies. Installed via `npm install`.
-
-## Accessibility Testing
-
-### Cypress Axe Automated Testing
-
-This project uses Cypress and Cypress Axe for automated accessibility testing. The accessibility tests can be executed using the following commands:
-
-- To test the entire page for accessibility issues:
-
+1. **Open Cypress Test Runner:**
     ```bash
-    npx cypress run --spec cypress/integration/todo.spec.js
+    npx cypress open
     ```
 
-- To exclude specific elements on the page:
+2. **Run the accessibility tests:**
+    - From the Cypress Test Runner, select and run the `cypress/integration/accessibility.spec.js` test file.
 
-    ```bash
-    npx cypress run --spec cypress/integration/todo.spec.js --env exclude=".learn"
-    ```
+### Test Cases
 
-- To test specific elements on the page:
+- **Default Accessibility Test:** Checks the entire page for accessibility issues using default axe rules.
+- **Specific Configuration Test:** Checks for accessibility issues with a filter for critical and serious impacts.
+- **Specific Selector Test:** Checks for accessibility issues in a specific part of the page, such as the header.
 
-    ```bash
-    npx cypress run --spec cypress/integration/todo.spec.js --env include=".learn"
-    ```
+## Contributing
 
-- To include rules with serious and critical impacts only:
+If you have suggestions or improvements for this project, feel free to open an issue or submit a pull request.
 
-    ```bash
-    npx cypress run --spec cypress/integration/todo.spec.js --env includedImpacts="critical,serious"
-    ```
+## License
 
-- To exclude specific accessibility rules:
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-    ```bash
-    npx cypress run --spec cypress/integration/todo.spec.js --env excludeRules="color-contrast"
-    ```
+## Contact
 
-### Lighthouse Performance Tool
+For questions or feedback, you can reach out to [your-email@example.com](mailto:your-email@example.com).
 
-Additionally, this repository includes a screenshot of the Lighthouse performance tool built into Chrome. Lighthouse is an open-source, automated tool for improving the quality of web pages. It can be accessed through Chrome DevTools or run from the command line.
-
-#### How to use Lighthouse:
-
-1. Open Chrome DevTools by right-clicking on the page, selecting "Inspect", and navigating to the "Audits/Lighthouse" tab.
-
-2. Click on the "Generate report" button to run the Lighthouse audit.
-
-3. Review the Lighthouse report, which provides insights into performance, accessibility, SEO, and best practices.
-
-4. Use the recommendations provided by Lighthouse to improve the overall quality of the web page.
-
-### Manual Testing
-
-While automated testing is valuable for identifying many accessibility issues, manual testing is equally important. Manual testing allows testers to experience the application as real users do and catch issues that automated tests might miss. It involves navigating through the application using various assistive technologies and ensuring that all functionalities are accessible and user-friendly.
